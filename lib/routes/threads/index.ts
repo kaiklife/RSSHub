@@ -7,6 +7,8 @@ import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 import { buildContent, extractTokens, getUserId, profileUrl, threadUrl } from './utils';
+const THREADS_COOKIE = process.env.THREADS_COOKIE || '';
+const authHeaders = THREADS_COOKIE ? { Cookie: THREADS_COOKIE } : {};
 
 export const route: Route = {
     path: '/:user/:routeParams?',
@@ -58,6 +60,7 @@ async function handler(ctx) {
 
     const response = await ofetch(profileUrl(user), {
         headers: {
+            ...authHeaders,
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',
             Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Encoding': 'gzip, br',

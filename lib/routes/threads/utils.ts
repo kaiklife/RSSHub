@@ -11,10 +11,13 @@ const profileUrl = (user: string) => `https://www.threads.com/@${user}`;
 const threadUrl = (code: string) => `https://www.threads.com/t/${code}`;
 
 const USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1';
+const THREADS_COOKIE = process.env.THREADS_COOKIE || '';
+const authHeaders = THREADS_COOKIE ? { Cookie: THREADS_COOKIE } : {};
 
 const extractTokens = async (user): Promise<{ lsd: string }> => {
     const response = await ofetch(profileUrl(user), {
         headers: {
+            ...authHeaders,
             'User-Agent': USER_AGENT,
             Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Encoding': 'gzip, br',
