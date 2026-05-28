@@ -14,10 +14,12 @@ const USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) Apple
 const THREADS_COOKIE = process.env.THREADS_COOKIE || '';
 const authHeaders = THREADS_COOKIE ? { Cookie: THREADS_COOKIE } : {};
 
-const extractTokens = async (user): Promise<{ lsd: string }> => {
+// Make extractTokens accept optional cookie override
+const extractTokens = async (user, cookie?: string): Promise<{ lsd: string }> => {
+    const headers = cookie ? { Cookie: `sessionid=${cookie}; ds_user_id=66676290140` } : authHeaders;
     const response = await ofetch(profileUrl(user), {
         headers: {
-            ...authHeaders,
+            ...headers,
             'User-Agent': USER_AGENT,
             Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Encoding': 'gzip, br',

@@ -29,7 +29,8 @@ Specify options (in the format of query string) in parameter \`routeParams\` to 
 | \`showAuthorAvatarInDesc\`       | Show avatar of author in description (RSS body) (Not recommended if your RSS reader extracts images from description)        | \`0\`/\`1\`/\`true\`/\`false\` | \`falseP\`    |
 | \`showEmojiForQuotesAndReply\`   | Use "🔁" instead of "QT", "↩️" instead of "Re"                                                                               | \`0\`/\`1\`/\`true\`/\`false\` | \`true\`      |
 | \`showQuotedInTitle\`            | Show quoted tweet in title                                                                                                   | \`0\`/\`1\`/\`true\`/\`false\` | \`true\`      |
-| \`replies\`                      | Show replies                                                                                                                 | \`0\`/\`1\`/\`true\`/\`false\` | \`true\`      |`,
+| \`replies\`                      | Show replies                                                                                                                 | \`0\`/\`1\`/\`true\`/\`false\` | \`true\`      |
+| \`cookie\`                       | Pass sessionid to bypass Threads login wall (overrides env var THREADS_COOKIE)                                                | sessionid value       | \`\`           |`,
         },
     },
     name: 'User timeline',
@@ -39,7 +40,7 @@ Specify options (in the format of query string) in parameter \`routeParams\` to 
 
 async function handler(ctx) {
     const { user, routeParams } = ctx.req.param();
-    const { lsd } = await extractTokens(user);
+    const { lsd } = await extractTokens(user, options.cookie);
     const userId = await getUserId(user);
 
     const params = new URLSearchParams(routeParams);
@@ -56,11 +57,17 @@ async function handler(ctx) {
         showQuotedAuthorAvatarInDesc: params.get('showQuotedAuthorAvatarInDesc') ?? false,
         showEmojiForQuotesAndReply: params.get('showEmojiForQuotesAndReply') ?? true,
         replies: params.get('replies') ?? false,
+        // Pass cookie=your_sessionid_here via routeParams to avoid env var
+        cookie: params.get('cookie'),
     };
+
+    // Priority: routeParams cookie > env var THREADS_COOKIE > no cookie
+    const cookies = options.cookie ? `sessionid=${options.cookie}; ds_user_id=66676290140` : THREADS_COOKIE;
+    const requestHeaders = cookies ? { Cookie: cookies } : {};
 
     const response = await ofetch(profileUrl(user), {
         headers: {
-            ...authHeaders,
+            ...requestHeaders,
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',
             Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Encoding': 'gzip, br',
