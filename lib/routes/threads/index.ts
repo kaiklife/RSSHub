@@ -50,8 +50,8 @@ async function handler(ctx) {
         showQuotedAuthorAvatarInDesc: params.get('showQuotedAuthorAvatarInDesc') ?? false,
         showEmojiForQuotesAndReply: params.get('showEmojiForQuotesAndReply') ?? true,
         replies: params.get('replies') ?? false,
-        // Pass cookie=your_sessionid_here via routeParams to avoid env var
-        cookie: params.get('cookie'),
+        // Pass cookie=your_sessionid_here via routeParams or ?cookie= query param
+        cookie: params.get('cookie') || ctx.query.cookie || '',
     };
 
     const { lsd } = await extractTokens(user, options.cookie);
