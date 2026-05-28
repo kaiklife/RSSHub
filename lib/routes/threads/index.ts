@@ -40,14 +40,7 @@ Specify options (in the format of query string) in parameter \`routeParams\` to 
 
 async function handler(ctx) {
     const { user, routeParams } = ctx.req.param();
-    const { lsd } = await extractTokens(user, options.cookie);
-    const userId = await getUserId(user);
-
     const params = new URLSearchParams(routeParams);
-    const debugJson: any = {
-        params: routeParams,
-        lsd,
-    };
 
     const options = {
         showAuthorInTitle: params.get('showAuthorInTitle') ?? true,
@@ -59,6 +52,14 @@ async function handler(ctx) {
         replies: params.get('replies') ?? false,
         // Pass cookie=your_sessionid_here via routeParams to avoid env var
         cookie: params.get('cookie'),
+    };
+
+    const { lsd } = await extractTokens(user, options.cookie);
+    const userId = await getUserId(user);
+
+    const debugJson: any = {
+        params: routeParams,
+        lsd,
     };
 
     // Priority: routeParams cookie > env var THREADS_COOKIE > no cookie
