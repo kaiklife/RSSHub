@@ -7,8 +7,8 @@ import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 import { buildContent, extractTokens, getUserId, profileUrl, threadUrl } from './utils';
+
 const THREADS_COOKIE = process.env.THREADS_COOKIE || '';
-const authHeaders = THREADS_COOKIE ? { Cookie: THREADS_COOKIE } : {};
 
 export const route: Route = {
     path: '/:user/:routeParams?',
@@ -51,7 +51,7 @@ async function handler(ctx) {
         showEmojiForQuotesAndReply: params.get('showEmojiForQuotesAndReply') ?? true,
         replies: params.get('replies') ?? false,
         // Pass cookie=your_sessionid_here via routeParams or ?cookie= query param
-        cookie: params.get('cookie') || ctx.query.cookie || '',
+        cookie: params.get('cookie') || ctx.req.query('cookie') || '',
     };
 
     const { lsd } = await extractTokens(user, options.cookie);
