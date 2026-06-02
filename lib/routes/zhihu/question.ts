@@ -8,7 +8,7 @@ export const route: Route = {
     path: '/question/:questionId/:sortBy?',
     categories: ['social-media'],
     example: '/zhihu/question/59895982',
-    parameters: { questionId: '问题 id', sortBy: '排序方式：`default`, `created`, `updated`。默认为 `default`' },
+    parameters: { questionId: '问题 id', sortBy: '排序方式：`default`, `created`, `updated`。默认为 `default`', cookie: '通过 ?cookie= 传入完整 Cookie，覆盖环境变量 ZHIHU_COOKIES' },
     features: {
         requireConfig: [
             {
@@ -40,6 +40,8 @@ async function handler(ctx) {
         sortBy = 'default', // default,created,updated
     } = ctx.req.param();
 
+    const cookieOverride = ctx.req.query('cookie') || '';
+
     // second: get real data from zhihu
     const rootUrl = 'https://www.zhihu.com';
     const apiPath = `/api/v4/questions/${questionId}/answers?${new URLSearchParams({
@@ -50,7 +52,7 @@ async function handler(ctx) {
         platform: 'desktop',
     })}`;
 
-    const signedHeader = await getSignedHeader(`https://www.zhihu.com/question/${questionId}`, apiPath);
+    const signedHeader = await getSignedHeader(`https://www.zhihu.com/question/${questionId}`, apiPath, cookieOverride);
 
     const response = await got({
         method: 'get',

@@ -65,9 +65,10 @@ export const getCookieValueByKey = (key: string) =>
         .find((e) => e.startsWith(key + '='))
         ?.slice(key.length + 1) || '';
 
-export const getSignedHeader = async (url: string, apiPath: string) => {
-    if (config?.zhihu?.cookies) {
-        const dc0 = getCookieValueByKey('d_c0');
+export const getSignedHeader = async (url: string, apiPath: string, cookieOverride?: string) => {
+    const useCookie = cookieOverride || config?.zhihu?.cookies || '';
+    if (useCookie) {
+        const dc0 = useCookie.match(/d_c0=([^;]+)/)?.[1] || '';
 
         const xzse93 = '101_3_3.0';
         const f = `${xzse93}+${apiPath}+${dc0}`;
@@ -76,8 +77,8 @@ export const getSignedHeader = async (url: string, apiPath: string) => {
         // If __zse_ck is absent from ZHIHU_COOKIES, fetch it automatically from
         // Zhihu's public static JS. The value is site-wide (not user-specific)
         // and requires no login, but it expires and must be kept up to date.
-        let cookieStr = config.zhihu.cookies;
-        if (!getCookieValueByKey('__zse_ck')) {
+        let cookieStr = useCookie;
+        if (!/__zse_ck=([^;]+)/.test(useCookie)) {
             const zseCk = await cache.tryGet('zhihu:zse_ck', async () => {
                 const response = await ofetch.raw('https://static.zhihu.com/zse-ck/v3.js');
                 const script = await response._data.text();
