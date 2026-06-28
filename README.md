@@ -1,12 +1,16 @@
 # kaiklife/RSSHub — 自定义 Fork
 
-本项目是 [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) 的定制 Fork，在原版超 5000+ 路由的基础上，额外添加了以下自定义路由和环境变量支持。
+本项目是 [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) 的定制 Fork，基于上游 v2026.06+ 版本。
+保留全部 5000+ 原生路由，以下仅列出**本 Fork 涉及的所有路由**（含上游原生相关路由），方便查阅。
 
-## 🚀 自定义路由
+---
 
-### 1. Threads 用户时间线（增强版）
+## 📱 社交 / 自媒体
 
-> 在原版 `/threads/:user` 路由基础上，增加了 Cookie 认证支持，解决 Threads 登录墙导致只能获取 4-5 条公开帖子的限制。
+### Threads 用户时间线（增强版）
+
+> 上游路由 `/threads/:user` 默认只能获取 4-5 条公开帖子。
+> 本 Fork 增加了 Cookie 认证支持，可拉取完整时间线。
 
 **路由地址：**
 
@@ -14,7 +18,13 @@
 /threads/:user
 ```
 
-**参数说明：**
+**路径参数：**
+
+| 参数   | 说明           | 示例          |
+| ------ | -------------- | ------------- |
+| `user` | Threads 用户名 | `mensennnnna` |
+
+**查询参数：**
 
 | 参数                           | 说明                                                  | 默认值  |
 | ------------------------------ | ----------------------------------------------------- | ------- |
@@ -46,14 +56,19 @@
 THREADS_COOKIE="sessionid=xxx; ds_user_id=xxx" docker run ...
 
 # 通过路由参数临时覆盖
-http://localhost:12005/threads/mensennnnna?cookie=your_sessionid_here
+GET /threads/mensennnnna?cookie=your_sessionid_here
+
+# 关闭头像显示
+GET /threads/mensennnnna?showAuthorAvatarInDesc=false
 ```
 
 ---
 
-### 2. CodeBuddy WorkBuddy 更新日志
+## 🛠️ 开发工具
 
-> 抓取腾讯云代码助手 CodeBuddy 旗下 WorkBuddy 桌面客户端的官方更新日志页面，生成 RSS feed。
+### CodeBuddy WorkBuddy 更新日志
+
+> 抓取腾讯云代码助手 CodeBuddy 旗下 WorkBuddy 桌面客户端的官方更新日志。
 
 **路由地址：**
 
@@ -61,65 +76,161 @@ http://localhost:12005/threads/mensennnnna?cookie=your_sessionid_here
 /codebuddy/workbuddy/changelog
 ```
 
-**参数说明：**
+**查询参数：**
 
 | 参数    | 说明       | 默认值 |
 | ------- | ---------- | ------ |
 | `limit` | 返回条目数 | `50`   |
 
-**来源页面：** https://www.codebuddy.cn/docs/workbuddy/Changelog
+**数据来源：** https://www.codebuddy.cn/docs/workbuddy/Changelog
 
 **完整示例：**
 
 ```
 # 获取最新 10 条更新
-http://localhost:12005/codebuddy/workbuddy/changelog?limit=10
+GET /codebuddy/workbuddy/changelog?limit=10
 
 # 获取全部更新
-http://localhost:12005/codebuddy/workbuddy/changelog
+GET /codebuddy/workbuddy/changelog
 ```
 
 ---
 
-### 3. 虎扑赛程比分
+## 🎮 游戏电竞 / 虎扑
 
-> 通过虎扑官方 `match-api.hupu.com` 接口，获取英雄联盟和王者荣耀的赛程与比分数据。每条 RSS 包含赛事名称、对阵双方、比分、状态（已结束/进行中/未开始）和虎扑直播间链接。
+> 虎扑（hupu）命名空间下涵盖 NBA、CBA、足球、英雄联盟、王者荣耀等赛事。
+> 以下路由均以 `hupu` 为前缀，例如 `/hupu/nba`。
 
-**路由地址：**
+### 🏀 篮球
+
+#### NBA / CBA / 足球 新闻
+
+```
+/hupu/nba          → NBA 新闻
+/hupu/cba          → CBA 新闻
+/hupu/soccer       → 足球新闻
+/hupu              → 首页
+```
+
+#### 球队新闻
+
+```
+/hupu/news/:team
+```
+
+| 参数   | 说明               | 示例                        |
+| ------ | ------------------ | --------------------------- |
+| `team` | 英文队名（全小写） | `spurs` `lakers` `warriors` |
+
+**支持球队列表：**
+
+`pistons` `knicks` `raptors` `heat` `celtics` `magic` `76ers` `cavaliers` `hawks` `bucks` `bulls` `hornets` `nets` `pacers` `wizards` `thunder` `lakers` `rockets` `spurs` `nuggets` `timberwolves` `suns` `warriors` `grizzlies` `trailblazers` `jazz` `mavericks` `clippers` `kings` `pelicans`
+
+**示例：**
+
+```
+GET /hupu/news/spurs      → 马刺新闻
+GET /hupu/news/lakers     → 湖人新闻
+GET /hupu/news/warriors   → 勇士新闻
+```
+
+### 📢 论坛 / 热帖
+
+#### 热帖版面
+
+```
+/hupu/all/:id?
+```
+
+| 参数 | 说明                     | 默认值        |
+| ---- | ------------------------ | ------------- |
+| `id` | 版面编号，见虎扑论坛 URL | `topic-daily` |
+
+**常用版面：**
+
+| 版面 id       | 说明           |
+| ------------- | -------------- |
+| `topic-daily` | 步行街每日话题 |
+| `love`        | 恋爱区         |
+| `history`     | 历史区         |
+| `stock`       | 股票区         |
+| `all-gg`      | 游戏热帖       |
+
+**示例：**
+
+```
+GET /hupu/all            → 步行街每日话题
+GET /hupu/all/love       → 恋爱区
+GET /hupu/all/all-gg     → 游戏热帖
+```
+
+#### 社区帖子
+
+```
+/hupu/bbs/:id?/:order?
+/hupu/bxj/:id?/:order?
+```
+
+| 参数    | 说明                       | 默认值 |
+| ------- | -------------------------- | ------ |
+| `id`    | 社区编号，见虎扑社区 URL   | `34`   |
+| `order` | `0`=最新回复，`1`=最新发布 | `1`    |
+
+> 💡 `bbs` 路由在帖子包含 `matchId` 时会自动拉取比赛战报（球员数据、球队比分、数据对比）。
+
+**示例：**
+
+```
+GET /hupu/bbs/34          → 步行街主干道
+GET /hupu/bbs/502         → 篮球资讯
+GET /hupu/bbs/85          → 英雄联盟
+GET /hupu/bbs/kog         → 王者荣耀
+```
+
+### 🆕 赛程比分（本 Fork 新增）
+
+> 通过虎扑官方 `match-api.hupu.com` 接口获取赛程与实时比分。
+> 支持按队伍筛选。
 
 ```
 /hupu/schedule/:game
 ```
 
-**参数说明：**
+**路径参数：**
 
 | 参数   | 说明                                           | 默认值 |
 | ------ | ---------------------------------------------- | ------ |
 | `game` | 游戏类型：`lol`（英雄联盟）、`kog`（王者荣耀） | `lol`  |
 
-**查询参数（可选）：**
+**查询参数：**
 
 | 参数   | 说明                                       | 示例                                  |
 | ------ | ------------------------------------------ | ------------------------------------- |
 | `team` | 按队伍名过滤（不区分大小写，支持中文队名） | `?team=T1` `?team=成都AG` `?team=blg` |
 
-**完整示例：**
+**每条 RSS 条目包含：**
+
+- ✅/🔴/⏳ 状态标签（已结束 / 进行中 / 未开始）
+- 赛事名称（如 KPL夏季赛、LPL第二赛段淘汰赛、季中冠军赛入围赛）
+- 对阵双方队名 + Logo
+- 比分（如 3-1）
+- 评分人数（如 "4.4万人评分"）
+- 虎扑直播间链接
+
+**示例：**
 
 ```
 # 英雄联盟全量赛程（LPL / LCK / MSI / EWC 等）
-/hupu/schedule/lol
+GET /hupu/schedule/lol
 
 # 王者荣耀全量赛程（KPL / 挑战者杯 等）
-/hupu/schedule/kog
+GET /hupu/schedule/kog
 
-# 按队伍筛选：只看 T1 的比赛
-/hupu/schedule/lol?team=T1
-
-# 按队伍筛选：只看 成都AG超玩会 的比赛
-/hupu/schedule/kog?team=成都AG
-
-# 按队伍筛选：模糊匹配
-/hupu/schedule/lol?team=blg
+# 按队伍筛选
+GET /hupu/schedule/lol?team=T1
+GET /hupu/schedule/kog?team=成都AG
+GET /hupu/schedule/lol?team=blg
+GET /hupu/schedule/lol?team=jdg
 ```
 
 **数据来源：**
@@ -151,16 +262,8 @@ GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleList
                         "scoreCountText": "4.4万人评分",
                         "againstInfo": {
                             "memberInfos": [
-                                {
-                                    "memberName": "成都AG超玩会",
-                                    "memberLogo": "https://...png",
-                                    "memberBaseScore": "3"
-                                },
-                                {
-                                    "memberName": "重庆狼队",
-                                    "memberLogo": "https://...png",
-                                    "memberBaseScore": "1"
-                                }
+                                { "memberName": "成都AG超玩会", "memberLogo": "https://...", "memberBaseScore": "3" },
+                                { "memberName": "重庆狼队", "memberLogo": "https://...", "memberBaseScore": "1" }
                             ],
                             "winnerMemberId": "xxx"
                         },
@@ -173,47 +276,32 @@ GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleList
 }
 ```
 
-**完整示例：**
-
-```
-# 英雄联盟赛程（LPL / LCK / MSI / EWC 等）
-http://localhost:12005/hupu/schedule/lol
-
-# 王者荣耀赛程（KPL / 挑战者杯 等）
-http://localhost:12005/hupu/schedule/kog
-```
-
 **环境变量：**
 
-无（无需 Cookie / Token，虎扑公开接口）
+无（虎扑公开接口，无需认证）
 
 ---
 
-## 📋 全部虎扑路由速查
+## 📋 路由速查表
 
-以下为 Fork 中所有虎扑（hupu）命名空间下的可用路由，涵盖新闻、论坛和赛程数据：
-
-| 路由                     | 说明                                   | 来源        |
-| ------------------------ | -------------------------------------- | ----------- |
-| `/hupu/nba`              | 🏀 NBA 新闻                            | 上游原生    |
-| `/hupu/cba`              | 🏀 CBA 新闻                            | 上游原生    |
-| `/hupu/soccer`           | ⚽ 足球新闻                            | 上游原生    |
-| `/hupu/news/:team`       | 🏀 特定球队新闻（如 `spurs` `lakers`） | 上游原生    |
-| `/hupu/all/:id?`         | 📢 热帖（默认步行街每日话题）          | 上游原生    |
-| `/hupu/bbs/:id?/:order?` | 💬 社区帖子（含战报数据）              | 上游原生    |
-| `/hupu/bxj/:id?/:order?` | 🚶 步行街帖子                          | 上游原生    |
-| **`/hupu/schedule/lol`** | 🎮 **英雄联盟赛程比分（新增）**        | **本 Fork** |
-| **`/hupu/schedule/kog`** | 🏆 **王者荣耀赛程比分（新增）**        | **本 Fork** |
-
-> 💡 所有虎捕路由均可通过 RSSHub 标准参数（`?limit=20`、`?format=json` 等）控制输出。
+| 路由                             | 分类      | 说明                              | 来源     |
+| -------------------------------- | --------- | --------------------------------- | -------- |
+| `/threads/:user`                 | 社交      | Threads 时间线（**增强 Cookie**） | **增强** |
+| `/codebuddy/workbuddy/changelog` | 开发工具  | WorkBuddy 更新日志                | **新增** |
+| `/hupu/nba`                      | 游戏/篮球 | NBA 新闻                          | 上游原生 |
+| `/hupu/cba`                      | 游戏/篮球 | CBA 新闻                          | 上游原生 |
+| `/hupu/soccer`                   | 游戏/足球 | 足球新闻                          | 上游原生 |
+| `/hupu/news/:team`               | 游戏/篮球 | 球队新闻                          | 上游原生 |
+| `/hupu/all/:id?`                 | 游戏/论坛 | 热帖                              | 上游原生 |
+| `/hupu/bbs/:id?/:order?`         | 游戏/论坛 | 社区帖子（含战报）                | 上游原生 |
+| `/hupu/bxj/:id?/:order?`         | 游戏/论坛 | 步行街                            | 上游原生 |
+| **`/hupu/schedule/:game`**       | 游戏/电竞 | **赛程比分（英雄联盟/王者荣耀）** | **新增** |
 
 ---
 
 ## 🏗️ 部署
 
 ### Docker / Docker Compose
-
-使用阿里云 ACR 镜像：
 
 ```yaml
 services:
@@ -230,15 +318,15 @@ services:
 ### 手动构建
 
 ```bash
-# 克隆
 git clone https://github.com/kaiklife/RSSHub.git
 cd RSSHub
-
-# 安装依赖
 npm install
 
-# 启动
+# 启动（带 Threads Cookie）
 THREADS_COOKIE="sessionid=xxx; ds_user_id=xxx" npm run dev
+
+# 或启动（仅基础功能）
+npm run dev
 ```
 
 ### 阿里云 ACR 自动构建
@@ -261,15 +349,31 @@ git push origin --tags -f
 
 **新增：**
 
-- 虎捕赛程比分路由：`/hupu/schedule/lol`（英雄联盟）和 `/hupu/schedule/kog`（王者荣耀）
-- 通过虎捕官方 `match-api.hupu.com` 接口获取全量赛程和实时比分
-- 每条 RSS 包含：赛事名称、对阵双方队名+Logo、比分、状态标签（✅已结束/🔴进行中/⏳未开始）、评分人数、直播间链接
+- 虎扑赛程比分路由：`/hupu/schedule/lol`（英雄联盟）和 `/hupu/schedule/kog`（王者荣耀）
+- 支持 `?team=xxx` 按队伍名过滤
+- 通过虎扑官方 `match-api.hupu.com` 接口获取全量赛程和实时比分
+- 每条 RSS 包含：赛事名称、对阵双方队名+Logo、比分、状态标签、评分人数、直播间链接
 
 **文件：**
 
 - `lib/routes/hupu/schedule.ts` — 路由处理 + 数据格式化 + HTML 模板渲染
 
 ### v0.1.2
+
+**新增：**
+
+- CodeBuddy WorkBuddy 更新日志路由：`/codebuddy/workbuddy/changelog`
+- 支持 `?limit=N` 参数控制条目数
+- 通过 `got` + `cheerio` 抓取 VitePress 预渲染页面
+
+**文件：**
+
+- `lib/routes/codebuddy/` — 新增命名空间
+    - `namespace.ts` — 命名空间配置
+    - `index.ts` — 路由处理 + route 导出
+    - `README.md` — 路由文档
+
+### v0.1.1
 
 **新增：**
 
