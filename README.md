@@ -97,6 +97,31 @@ http://localhost:12005/codebuddy/workbuddy/changelog
 | ------ | ---------------------------------------------- | ------ |
 | `game` | 游戏类型：`lol`（英雄联盟）、`kog`（王者荣耀） | `lol`  |
 
+**查询参数（可选）：**
+
+| 参数   | 说明                                       | 示例                                  |
+| ------ | ------------------------------------------ | ------------------------------------- |
+| `team` | 按队伍名过滤（不区分大小写，支持中文队名） | `?team=T1` `?team=成都AG` `?team=blg` |
+
+**完整示例：**
+
+```
+# 英雄联盟全量赛程（LPL / LCK / MSI / EWC 等）
+/hupu/schedule/lol
+
+# 王者荣耀全量赛程（KPL / 挑战者杯 等）
+/hupu/schedule/kog
+
+# 按队伍筛选：只看 T1 的比赛
+/hupu/schedule/lol?team=T1
+
+# 按队伍筛选：只看 成都AG超玩会 的比赛
+/hupu/schedule/kog?team=成都AG
+
+# 按队伍筛选：模糊匹配
+/hupu/schedule/lol?team=blg
+```
+
 **数据来源：**
 
 ```

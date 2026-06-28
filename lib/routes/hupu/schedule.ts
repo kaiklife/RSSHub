@@ -158,6 +158,9 @@ export const route: Route = {
 
         const gameConfig = GAMES[game];
 
+        // 可选：按队伍名过滤（不区分大小写，支持中文队名）
+        const teamFilter = ctx.req.query('team')?.trim();
+
         const data = await ofetch<ScheduleApiResponse>('https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleListByTagForH5', {
             query: {
                 businessType: 'common',
@@ -171,6 +174,18 @@ export const route: Route = {
         const items: DataItem[] = [];
         for (const day of dayGameData) {
             for (const match of day.matchData) {
+                // 如果指定了队伍过滤，只保留包含该队伍的比赛
+                if (teamFilter) {
+                    const team1 = match.againstInfo.memberInfos[0].memberName;
+                    const team2 = match.againstInfo.memberInfos[1].memberName;
+                    if (!team1 || !team2) {
+                        continue;
+                    }
+                    const matchTeam = (name: string) => name.toLowerCase().includes(teamFilter.toLowerCase());
+                    if (!matchTeam(team1) && !matchTeam(team2)) {
+                        continue;
+                    }
+                }
                 items.push({
                     title: buildMatchTitle(match),
                     description: buildMatchDescription(match),
@@ -181,11 +196,12 @@ export const route: Route = {
             }
         }
 
+        const titleSuffix = teamFilter ? ` - ${teamFilter.toUpperCase()}` : '';
         return {
-            title: `虎扑 - ${gameConfig.title} 赛程比分`,
+            title: `虎扑 - ${gameConfig.title} 赛程比分${titleSuffix}`,
             link: 'https://www.hupu.com',
             item: items,
-            description: `虎扑 ${gameConfig.title} 赛程与比分数据`,
+            description: `虎扑 ${gameConfig.title} 赛程与比分数据${teamFilter ? `（筛选队伍：${teamFilter}）` : ''}`,
         } as Data;
     },
 };
