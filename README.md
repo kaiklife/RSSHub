@@ -1,13 +1,105 @@
 # kaiklife/RSSHub — 自定义 Fork
 
-本项目是 [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) 的定制 Fork，基于上游 v2026.06+ 版本。
-保留全部 5000+ 原生路由，以下仅列出**本 Fork 涉及的所有路由**（含上游原生相关路由），方便查阅。
+本项目是 [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) 的定制 Fork。
+
+- ✅ **保留上游全部 5000+ 路由**，功能与原版一致
+- ✨ **额外新增 / 增强**了部分路由（见下方）
 
 ---
 
-## 📱 社交 / 自媒体
+## 📖 全部路由分类索引
 
-### Threads 用户时间线（增强版）
+本 Fork 支持上游 RSSHub 的所有路由，按分类索引如下。
+详细参数说明请点击分类链接跳转官方文档，或直接访问 [docs.rsshub.app](https://docs.rsshub.app/zh/)。
+
+### 社交媒体
+
+| 分类             | 官方文档                                                                        | 支持站点（部分）                           |
+| :--------------- | :------------------------------------------------------------------------------ | :----------------------------------------- |
+| 💬 Bilibili      | [文档 →](https://docs.rsshub.app/zh/routes/social-media#bilibili)               | 视频、番剧、用户动态、直播、排行榜         |
+| 💬 微博          | [文档 →](https://docs.rsshub.app/zh/routes/social-media#wei-bo)                 | 用户时间线、热搜、关键词搜索、超话         |
+| 💬 知乎          | [文档 →](https://docs.rsshub.app/zh/routes/social-media#zhi-hu)                 | 热榜、专栏、用户动态、收藏夹               |
+| 💬 Twitter / X   | [文档 →](https://docs.rsshub.app/zh/routes/social-media#twitter)                | 用户时间线、关键词搜索、列表               |
+| 💬 Instagram     | [文档 →](https://docs.rsshub.app/zh/routes/social-media#instagram)              | 用户帖子、标签                             |
+| 💬 Threads       | [文档 →](https://docs.rsshub.app/zh/routes/social-media#threads)                | 用户时间线（**本 Fork 增强 Cookie 支持**） |
+| 💬 小红书        | [文档 →](https://docs.rsshub.app/zh/routes/social-media#xiao-hong-shu)          | 用户笔记、笔记详情                         |
+| 💬 抖音 / TikTok | [文档 →](https://docs.rsshub.app/zh/routes/social-media#dou-yin)                | 用户视频、热搜                             |
+| 💬 微信公众号    | [文档 →](https://docs.rsshub.app/zh/routes/social-media#wei-xin-gong-zhong-hao) | 文章搜索                                   |
+| 💬 Telegram      | [文档 →](https://docs.rsshub.app/zh/routes/social-media#telegram)               | 频道、贴纸包                               |
+| 💬 Discord       | [文档 →](https://docs.rsshub.app/zh/routes/social-media#discord)                | 频道消息                                   |
+| 💬 其他          | [文档 →](https://docs.rsshub.app/zh/routes/social-media)                        | Medium、Reddit、YouTube、Niconico 等       |
+
+### 新闻 / 新媒体
+
+| 分类                           | 官方文档                                                               | 支持站点（部分）           |
+| :----------------------------- | :--------------------------------------------------------------------- | :------------------------- |
+| 📰 36氪                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media#36kr)             | 快讯、文章                 |
+| 📰 爱范儿                      | [文档 →](https://docs.rsshub.app/zh/routes/new-media#ifanr)            | 快讯                       |
+| 📰 少数派                      | [文档 →](https://docs.rsshub.app/zh/routes/new-media#shao-shu-pai)     | 热榜、分类                 |
+| 📰 虎嗅                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media#hu-xiu)           | 文章                       |
+| 📰 澎湃新闻                    | [文档 →](https://docs.rsshub.app/zh/routes/new-media#peng-pai-xin-wen) | 热榜                       |
+| 📰 BBC / 纽约时报 / 华尔街日报 | [文档 →](https://docs.rsshub.app/zh/routes/new-media)                  | 分类新闻                   |
+| 📰 其他                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media)                  | 品玩、极客公园、界面新闻等 |
+
+### 论坛 / 社区
+
+| 分类            | 官方文档                                               | 支持站点（部分）                                     |
+| :-------------- | :----------------------------------------------------- | :--------------------------------------------------- |
+| 💬 虎扑         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#hu-pu)  | **NBA/CBA/足球新闻、球队新闻、热帖、社区、赛程比分** |
+| 💬 V2EX         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#v2ex)   | 主题、节点                                           |
+| 💬 贴吧         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#tie-ba) | 帖子                                                 |
+| 💬 NGA          | [文档 →](https://docs.rsshub.app/zh/routes/bbs#nga)    | 论坛、帖子                                           |
+| 💬 1point3acres | [文档 →](https://docs.rsshub.app/zh/routes/bbs)        | 论坛                                                 |
+| 💬 其他         | [文档 →](https://docs.rsshub.app/zh/routes/bbs)        | Chiphell、HiPDA、saraba1st 等                        |
+
+### 编程 / 开发
+
+| 分类          | 官方文档                                                           | 支持站点（部分）                            |
+| :------------ | :----------------------------------------------------------------- | :------------------------------------------ |
+| 💻 GitHub     | [文档 →](https://docs.rsshub.app/zh/routes/programming#github)     | 仓库 Issues、PR、Release、Commits、Trending |
+| 💻 GitLab     | [文档 →](https://docs.rsshub.app/zh/routes/programming#gitlab)     | 仓库活动                                    |
+| 💻 Docker Hub | [文档 →](https://docs.rsshub.app/zh/routes/programming#docker-hub) | 镜像更新                                    |
+| 💻 npm        | [文档 →](https://docs.rsshub.app/zh/routes/programming#npm)        | 包更新                                      |
+| 💻 掘金       | [文档 →](https://docs.rsshub.app/zh/routes/programming#jue-jin)    | 文章                                        |
+| 💻 其他       | [文档 →](https://docs.rsshub.app/zh/routes/programming)            | Hacker News、InfoQ、Stack Overflow 等       |
+
+### 游戏
+
+| 分类           | 官方文档                                                              | 支持站点（部分）        |
+| :------------- | :-------------------------------------------------------------------- | :---------------------- |
+| 🎮 王者荣耀    | [文档 →](https://docs.rsshub.app/zh/routes/game#wang-zhe-rong-yao)    | **赛程比分**、英雄强度  |
+| 🎮 英雄联盟    | [文档 →](https://docs.rsshub.app/zh/routes/game#ying-xiong-lian-meng) | **赛程比分**、新闻      |
+| 🎮 Steam       | [文档 →](https://docs.rsshub.app/zh/routes/game#steam)                | 游戏新闻、更新          |
+| 🎮 PlayStation | [文档 →](https://docs.rsshub.app/zh/routes/game#playstation)          | 商店                    |
+| 🎮 Nintendo    | [文档 →](https://docs.rsshub.app/zh/routes/game#nintendo)             | 商店                    |
+| 🎮 其他        | [文档 →](https://docs.rsshub.app/zh/routes/game)                      | TapTap、3DM、游民星空等 |
+
+### 其他分类
+
+| 分类        | 官方文档                                               | 说明                       |
+| :---------- | :----------------------------------------------------- | :------------------------- |
+| 🎓 大学通知 | [文档 →](https://docs.rsshub.app/zh/routes/university) | 国内外高校                 |
+| 📚 阅读     | [文档 →](https://docs.rsshub.app/zh/routes/reading)    | 起点、微信读书、豆瓣       |
+| 🎵 音视频   | [文档 →](https://docs.rsshub.app/zh/routes/multimedia) | 哔哩哔哩、YouTube、Spotify |
+| 🖼️ 图片     | [文档 →](https://docs.rsshub.app/zh/routes/picture)    | 壁纸、摄影                 |
+| 🛍️ 购物     | [文档 →](https://docs.rsshub.app/zh/routes/shopping)   | 什么值得买、京东           |
+| 🛫 出行     | [文档 →](https://docs.rsshub.app/zh/routes/travel)     | 12306、航班                |
+| 💰 金融     | [文档 →](https://docs.rsshub.app/zh/routes/finance)    | 股票、基金                 |
+| 🔬 科学期刊 | [文档 →](https://docs.rsshub.app/zh/routes/journal)    | 学术论文                   |
+| 📢 政务     | [文档 →](https://docs.rsshub.app/zh/routes/government) | 政府公告                   |
+| 🔍 其他     | [文档 →](https://docs.rsshub.app/zh/routes/other)      | 天气、热搜、排行榜         |
+
+> 📌 **完整路由列表**请访问 [docs.rsshub.app/zh/routes](https://docs.rsshub.app/zh/routes)
+
+---
+
+## ✨ 本 Fork 新增 / 增强的路由
+
+以下路由为上游所无或在本 Fork 中做了功能增强。
+
+---
+
+### 📱 Threads 用户时间线（增强版）
 
 > 上游路由 `/threads/:user` 默认只能获取 4-5 条公开帖子。
 > 本 Fork 增加了 Cookie 认证支持，可拉取完整时间线。
@@ -64,9 +156,7 @@ GET /threads/mensennnnna?showAuthorAvatarInDesc=false
 
 ---
 
-## 🛠️ 开发工具
-
-### CodeBuddy WorkBuddy 更新日志
+### 🛠️ CodeBuddy WorkBuddy 更新日志
 
 > 抓取腾讯云代码助手 CodeBuddy 旗下 WorkBuddy 桌面客户端的官方更新日志。
 
@@ -96,101 +186,11 @@ GET /codebuddy/workbuddy/changelog
 
 ---
 
-## 🎮 游戏电竞 / 虎扑
+### 🎮 虎扑赛程比分
 
-> 虎扑（hupu）命名空间下涵盖 NBA、CBA、足球、英雄联盟、王者荣耀等赛事。
-> 以下路由均以 `hupu` 为前缀，例如 `/hupu/nba`。
+> 通过虎扑官方 API 获取英雄联盟和王者荣耀的赛程与比分数据。
 
-### 🏀 篮球
-
-#### NBA / CBA / 足球 新闻
-
-```
-/hupu/nba          → NBA 新闻
-/hupu/cba          → CBA 新闻
-/hupu/soccer       → 足球新闻
-/hupu              → 首页
-```
-
-#### 球队新闻
-
-```
-/hupu/news/:team
-```
-
-| 参数   | 说明               | 示例                        |
-| ------ | ------------------ | --------------------------- |
-| `team` | 英文队名（全小写） | `spurs` `lakers` `warriors` |
-
-**支持球队列表：**
-
-`pistons` `knicks` `raptors` `heat` `celtics` `magic` `76ers` `cavaliers` `hawks` `bucks` `bulls` `hornets` `nets` `pacers` `wizards` `thunder` `lakers` `rockets` `spurs` `nuggets` `timberwolves` `suns` `warriors` `grizzlies` `trailblazers` `jazz` `mavericks` `clippers` `kings` `pelicans`
-
-**示例：**
-
-```
-GET /hupu/news/spurs      → 马刺新闻
-GET /hupu/news/lakers     → 湖人新闻
-GET /hupu/news/warriors   → 勇士新闻
-```
-
-### 📢 论坛 / 热帖
-
-#### 热帖版面
-
-```
-/hupu/all/:id?
-```
-
-| 参数 | 说明                     | 默认值        |
-| ---- | ------------------------ | ------------- |
-| `id` | 版面编号，见虎扑论坛 URL | `topic-daily` |
-
-**常用版面：**
-
-| 版面 id       | 说明           |
-| ------------- | -------------- |
-| `topic-daily` | 步行街每日话题 |
-| `love`        | 恋爱区         |
-| `history`     | 历史区         |
-| `stock`       | 股票区         |
-| `all-gg`      | 游戏热帖       |
-
-**示例：**
-
-```
-GET /hupu/all            → 步行街每日话题
-GET /hupu/all/love       → 恋爱区
-GET /hupu/all/all-gg     → 游戏热帖
-```
-
-#### 社区帖子
-
-```
-/hupu/bbs/:id?/:order?
-/hupu/bxj/:id?/:order?
-```
-
-| 参数    | 说明                       | 默认值 |
-| ------- | -------------------------- | ------ |
-| `id`    | 社区编号，见虎扑社区 URL   | `34`   |
-| `order` | `0`=最新回复，`1`=最新发布 | `1`    |
-
-> 💡 `bbs` 路由在帖子包含 `matchId` 时会自动拉取比赛战报（球员数据、球队比分、数据对比）。
-
-**示例：**
-
-```
-GET /hupu/bbs/34          → 步行街主干道
-GET /hupu/bbs/502         → 篮球资讯
-GET /hupu/bbs/85          → 英雄联盟
-GET /hupu/bbs/kog         → 王者荣耀
-```
-
-### 🆕 赛程比分（本 Fork 新增）
-
-> 通过虎扑官方 `match-api.hupu.com` 接口获取赛程与实时比分。
-> 支持按队伍筛选。
+**路由地址：**
 
 ```
 /hupu/schedule/:game
@@ -208,41 +208,7 @@ GET /hupu/bbs/kog         → 王者荣耀
 | ------ | ------------------------------------------ | ------------------------------------- |
 | `team` | 按队伍名过滤（不区分大小写，支持中文队名） | `?team=T1` `?team=成都AG` `?team=blg` |
 
-**每条 RSS 条目包含：**
-
-- ✅/🔴/⏳ 状态标签（已结束 / 进行中 / 未开始）
-- 赛事名称（如 KPL夏季赛、LPL第二赛段淘汰赛、季中冠军赛入围赛）
-- 对阵双方队名 + Logo
-- 比分（如 3-1）
-- 评分人数（如 "4.4万人评分"）
-- 虎扑直播间链接
-
-**示例：**
-
-```
-# 英雄联盟全量赛程（LPL / LCK / MSI / EWC 等）
-GET /hupu/schedule/lol
-
-# 王者荣耀全量赛程（KPL / 挑战者杯 等）
-GET /hupu/schedule/kog
-
-# 按队伍筛选
-GET /hupu/schedule/lol?team=T1
-GET /hupu/schedule/kog?team=成都AG
-GET /hupu/schedule/lol?team=blg
-GET /hupu/schedule/lol?team=jdg
-```
-
-**数据来源：**
-
-```
-GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleListByTagForH5
-    ?businessType=common
-    &businessId={lol|kog}
-    &datasource=navigation
-```
-
-**返回数据结构：**
+**数据结构：**
 
 ```json
 {
@@ -258,14 +224,12 @@ GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleList
                         "matchStatusDesc": "已结束 | 进行中 | 未开始",
                         "matchStartTimeStamp": "1777968000000",
                         "matchIntroduction": "KPL夏季赛",
-                        "matchName": "电竞常规赛 第三轮",
                         "scoreCountText": "4.4万人评分",
                         "againstInfo": {
                             "memberInfos": [
                                 { "memberName": "成都AG超玩会", "memberLogo": "https://...", "memberBaseScore": "3" },
                                 { "memberName": "重庆狼队", "memberLogo": "https://...", "memberBaseScore": "1" }
-                            ],
-                            "winnerMemberId": "xxx"
+                            ]
                         },
                         "liveRoomLink": "huputiyu://general/live?..."
                     }
@@ -276,26 +240,32 @@ GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleList
 }
 ```
 
-**环境变量：**
+**虎扑原生路由速查：**
 
-无（虎扑公开接口，无需认证）
+| 路由                     | 说明               |
+| ------------------------ | ------------------ |
+| `/hupu/nba`              | NBA 新闻           |
+| `/hupu/cba`              | CBA 新闻           |
+| `/hupu/soccer`           | 足球新闻           |
+| `/hupu/news/:team`       | 球队新闻           |
+| `/hupu/all/:id?`         | 热帖               |
+| `/hupu/bbs/:id?/:order?` | 社区帖子（含战报） |
+| `/hupu/bxj/:id?/:order?` | 步行街             |
 
----
+**示例：**
 
-## 📋 路由速查表
+```
+# 英雄联盟全量赛程
+GET /hupu/schedule/lol
 
-| 路由                             | 分类      | 说明                              | 来源     |
-| -------------------------------- | --------- | --------------------------------- | -------- |
-| `/threads/:user`                 | 社交      | Threads 时间线（**增强 Cookie**） | **增强** |
-| `/codebuddy/workbuddy/changelog` | 开发工具  | WorkBuddy 更新日志                | **新增** |
-| `/hupu/nba`                      | 游戏/篮球 | NBA 新闻                          | 上游原生 |
-| `/hupu/cba`                      | 游戏/篮球 | CBA 新闻                          | 上游原生 |
-| `/hupu/soccer`                   | 游戏/足球 | 足球新闻                          | 上游原生 |
-| `/hupu/news/:team`               | 游戏/篮球 | 球队新闻                          | 上游原生 |
-| `/hupu/all/:id?`                 | 游戏/论坛 | 热帖                              | 上游原生 |
-| `/hupu/bbs/:id?/:order?`         | 游戏/论坛 | 社区帖子（含战报）                | 上游原生 |
-| `/hupu/bxj/:id?/:order?`         | 游戏/论坛 | 步行街                            | 上游原生 |
-| **`/hupu/schedule/:game`**       | 游戏/电竞 | **赛程比分（英雄联盟/王者荣耀）** | **新增** |
+# 王者荣耀全量赛程
+GET /hupu/schedule/kog
+
+# 按队伍筛选
+GET /hupu/schedule/lol?team=T1
+GET /hupu/schedule/kog?team=成都AG
+GET /hupu/schedule/lol?team=blg
+```
 
 ---
 
@@ -325,7 +295,7 @@ npm install
 # 启动（带 Threads Cookie）
 THREADS_COOKIE="sessionid=xxx; ds_user_id=xxx" npm run dev
 
-# 或启动（仅基础功能）
+# 启动（仅基础功能）
 npm run dev
 ```
 
@@ -352,7 +322,6 @@ git push origin --tags -f
 - 虎扑赛程比分路由：`/hupu/schedule/lol`（英雄联盟）和 `/hupu/schedule/kog`（王者荣耀）
 - 支持 `?team=xxx` 按队伍名过滤
 - 通过虎扑官方 `match-api.hupu.com` 接口获取全量赛程和实时比分
-- 每条 RSS 包含：赛事名称、对阵双方队名+Logo、比分、状态标签、评分人数、直播间链接
 
 **文件：**
 
@@ -364,14 +333,10 @@ git push origin --tags -f
 
 - CodeBuddy WorkBuddy 更新日志路由：`/codebuddy/workbuddy/changelog`
 - 支持 `?limit=N` 参数控制条目数
-- 通过 `got` + `cheerio` 抓取 VitePress 预渲染页面
 
 **文件：**
 
 - `lib/routes/codebuddy/` — 新增命名空间
-    - `namespace.ts` — 命名空间配置
-    - `index.ts` — 路由处理 + route 导出
-    - `README.md` — 路由文档
 
 ### v0.1.1
 
@@ -379,10 +344,6 @@ git push origin --tags -f
 
 - Threads 路由 Cookie 认证支持（`THREADS_COOKIE` 环境变量）
 - 支持通过路由参数 `cookie` 临时覆盖 Cookie
-
-**修复：**
-
-- 修复 TDZ（Temporal Dead Zone）变量声明顺序错误
 
 **文件变更：**
 
@@ -393,6 +354,6 @@ git push origin --tags -f
 
 ## 🔗 相关链接
 
-- 上游项目：[DIYgod/RSSHub](https://github.com/DIYgod/RSSHub)
-- 官方文档：https://docs.rsshub.app
-- Fork 仓库：https://github.com/kaiklife/RSSHub
+- **上游项目：** [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub)
+- **官方文档（完整路由列表）：** https://docs.rsshub.app/zh/routes
+- **Fork 仓库：** https://github.com/kaiklife/RSSHub
