@@ -9,85 +9,86 @@
 
 ## 📖 全部路由分类索引
 
-本 Fork 支持上游 RSSHub 的所有路由，按分类索引如下。
-详细参数说明请点击分类链接跳转官方文档，或直接访问 [docs.rsshub.app](https://docs.rsshub.app/zh/)。
+本 Fork 支持上游 RSSHub 的所有路由。
+完整路由列表请访问官方文档：**[docs.rsshub.app/zh/routes/](https://docs.rsshub.app/zh/routes/)**
+以下为按分类整理的常用路由索引，点击链接查看对应路由的详细参数。
 
 ### 社交媒体
 
-| 分类             | 官方文档                                                                        | 支持站点（部分）                           |
-| :--------------- | :------------------------------------------------------------------------------ | :----------------------------------------- |
-| 💬 Bilibili      | [文档 →](https://docs.rsshub.app/zh/routes/social-media#bilibili)               | 视频、番剧、用户动态、直播、排行榜         |
-| 💬 微博          | [文档 →](https://docs.rsshub.app/zh/routes/social-media#wei-bo)                 | 用户时间线、热搜、关键词搜索、超话         |
-| 💬 知乎          | [文档 →](https://docs.rsshub.app/zh/routes/social-media#zhi-hu)                 | 热榜、专栏、用户动态、收藏夹               |
-| 💬 Twitter / X   | [文档 →](https://docs.rsshub.app/zh/routes/social-media#twitter)                | 用户时间线、关键词搜索、列表               |
-| 💬 Instagram     | [文档 →](https://docs.rsshub.app/zh/routes/social-media#instagram)              | 用户帖子、标签                             |
-| 💬 Threads       | [文档 →](https://docs.rsshub.app/zh/routes/social-media#threads)                | 用户时间线（**本 Fork 增强 Cookie 支持**） |
-| 💬 小红书        | [文档 →](https://docs.rsshub.app/zh/routes/social-media#xiao-hong-shu)          | 用户笔记、笔记详情                         |
-| 💬 抖音 / TikTok | [文档 →](https://docs.rsshub.app/zh/routes/social-media#dou-yin)                | 用户视频、热搜                             |
-| 💬 微信公众号    | [文档 →](https://docs.rsshub.app/zh/routes/social-media#wei-xin-gong-zhong-hao) | 文章搜索                                   |
-| 💬 Telegram      | [文档 →](https://docs.rsshub.app/zh/routes/social-media#telegram)               | 频道、贴纸包                               |
-| 💬 Discord       | [文档 →](https://docs.rsshub.app/zh/routes/social-media#discord)                | 频道消息                                   |
-| 💬 其他          | [文档 →](https://docs.rsshub.app/zh/routes/social-media)                        | Medium、Reddit、YouTube、Niconico 等       |
+| 分类             | 官方文档                                                | 支持站点（部分）                           |
+| :--------------- | :------------------------------------------------------ | :----------------------------------------- |
+| 💬 Bilibili      | [文档 →](https://docs.rsshub.app/zh/routes/bilibili)    | 视频、番剧、用户动态、直播、排行榜         |
+| 💬 微博          | [文档 →](https://docs.rsshub.app/zh/routes/weibo)       | 用户时间线、热搜、关键词搜索、超话         |
+| 💬 知乎          | [文档 →](https://docs.rsshub.app/zh/routes/zhihu)       | 热榜、专栏、用户动态、收藏夹               |
+| 💬 Twitter / X   | [文档 →](https://docs.rsshub.app/zh/routes/twitter)     | 用户时间线、关键词搜索、列表               |
+| 💬 Instagram     | [文档 →](https://docs.rsshub.app/zh/routes/picnob)      | 用户帖子、标签                             |
+| 💬 Threads       | [文档 →](https://docs.rsshub.app/zh/routes/threads)     | 用户时间线（**本 Fork 增强 Cookie 支持**） |
+| 💬 小红书        | [文档 →](https://docs.rsshub.app/zh/routes/xiaohongshu) | 用户笔记、笔记详情                         |
+| 💬 抖音 / TikTok | [文档 →](https://docs.rsshub.app/zh/routes/douyin)      | 用户视频、热搜                             |
+| 💬 微信公众号    | [文档 →](https://docs.rsshub.app/zh/routes/wechat)      | 文章搜索                                   |
+| 💬 Telegram      | [文档 →](https://docs.rsshub.app/zh/routes/telegram)    | 频道、贴纸包                               |
+| 💬 Discord       | [文档 →](https://docs.rsshub.app/zh/routes/discord)     | 频道消息                                   |
+| 💬 其他          | [文档 →](https://docs.rsshub.app/zh/routes/)            | Medium、Reddit、YouTube、Niconico 等       |
 
 ### 新闻 / 新媒体
 
-| 分类                           | 官方文档                                                               | 支持站点（部分）           |
-| :----------------------------- | :--------------------------------------------------------------------- | :------------------------- |
-| 📰 36氪                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media#36kr)             | 快讯、文章                 |
-| 📰 爱范儿                      | [文档 →](https://docs.rsshub.app/zh/routes/new-media#ifanr)            | 快讯                       |
-| 📰 少数派                      | [文档 →](https://docs.rsshub.app/zh/routes/new-media#shao-shu-pai)     | 热榜、分类                 |
-| 📰 虎嗅                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media#hu-xiu)           | 文章                       |
-| 📰 澎湃新闻                    | [文档 →](https://docs.rsshub.app/zh/routes/new-media#peng-pai-xin-wen) | 热榜                       |
-| 📰 BBC / 纽约时报 / 华尔街日报 | [文档 →](https://docs.rsshub.app/zh/routes/new-media)                  | 分类新闻                   |
-| 📰 其他                        | [文档 →](https://docs.rsshub.app/zh/routes/new-media)                  | 品玩、极客公园、界面新闻等 |
+| 分类                           | 官方文档                                             | 支持站点（部分）           |
+| :----------------------------- | :--------------------------------------------------- | :------------------------- |
+| 📰 36氪                        | [文档 →](https://docs.rsshub.app/zh/routes/36kr)     | 快讯、文章                 |
+| 📰 爱范儿                      | [文档 →](https://docs.rsshub.app/zh/routes/ifanr)    | 快讯                       |
+| 📰 少数派                      | [文档 →](https://docs.rsshub.app/zh/routes/sspai)    | 热榜、分类                 |
+| 📰 虎嗅                        | [文档 →](https://docs.rsshub.app/zh/routes/huxiu)    | 文章                       |
+| 📰 澎湃新闻                    | [文档 →](https://docs.rsshub.app/zh/routes/thepaper) | 热榜                       |
+| 📰 BBC / 纽约时报 / 华尔街日报 | [文档 →](https://docs.rsshub.app/zh/routes/)         | 分类新闻                   |
+| 📰 其他                        | [文档 →](https://docs.rsshub.app/zh/routes/)         | 品玩、极客公园、界面新闻等 |
 
 ### 论坛 / 社区
 
-| 分类            | 官方文档                                               | 支持站点（部分）                                     |
-| :-------------- | :----------------------------------------------------- | :--------------------------------------------------- |
-| 💬 虎扑         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#hu-pu)  | **NBA/CBA/足球新闻、球队新闻、热帖、社区、赛程比分** |
-| 💬 V2EX         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#v2ex)   | 主题、节点                                           |
-| 💬 贴吧         | [文档 →](https://docs.rsshub.app/zh/routes/bbs#tie-ba) | 帖子                                                 |
-| 💬 NGA          | [文档 →](https://docs.rsshub.app/zh/routes/bbs#nga)    | 论坛、帖子                                           |
-| 💬 1point3acres | [文档 →](https://docs.rsshub.app/zh/routes/bbs)        | 论坛                                                 |
-| 💬 其他         | [文档 →](https://docs.rsshub.app/zh/routes/bbs)        | Chiphell、HiPDA、saraba1st 等                        |
+| 分类            | 官方文档                                          | 支持站点（部分）                                     |
+| :-------------- | :------------------------------------------------ | :--------------------------------------------------- |
+| 💬 虎扑         | [文档 →](https://docs.rsshub.app/zh/routes/hupu)  | **NBA/CBA/足球新闻、球队新闻、热帖、社区、赛程比分** |
+| 💬 V2EX         | [文档 →](https://docs.rsshub.app/zh/routes/v2ex)  | 主题、节点                                           |
+| 💬 贴吧         | [文档 →](https://docs.rsshub.app/zh/routes/tieba) | 帖子                                                 |
+| 💬 NGA          | [文档 →](https://docs.rsshub.app/zh/routes/nga)   | 论坛、帖子                                           |
+| 💬 1point3acres | [文档 →](https://docs.rsshub.app/zh/routes/)      | 论坛                                                 |
+| 💬 其他         | [文档 →](https://docs.rsshub.app/zh/routes/)      | Chiphell、HiPDA、saraba1st 等                        |
 
 ### 编程 / 开发
 
-| 分类          | 官方文档                                                           | 支持站点（部分）                            |
-| :------------ | :----------------------------------------------------------------- | :------------------------------------------ |
-| 💻 GitHub     | [文档 →](https://docs.rsshub.app/zh/routes/programming#github)     | 仓库 Issues、PR、Release、Commits、Trending |
-| 💻 GitLab     | [文档 →](https://docs.rsshub.app/zh/routes/programming#gitlab)     | 仓库活动                                    |
-| 💻 Docker Hub | [文档 →](https://docs.rsshub.app/zh/routes/programming#docker-hub) | 镜像更新                                    |
-| 💻 npm        | [文档 →](https://docs.rsshub.app/zh/routes/programming#npm)        | 包更新                                      |
-| 💻 掘金       | [文档 →](https://docs.rsshub.app/zh/routes/programming#jue-jin)    | 文章                                        |
-| 💻 其他       | [文档 →](https://docs.rsshub.app/zh/routes/programming)            | Hacker News、InfoQ、Stack Overflow 等       |
+| 分类          | 官方文档                                              | 支持站点（部分）                            |
+| :------------ | :---------------------------------------------------- | :------------------------------------------ |
+| 💻 GitHub     | [文档 →](https://docs.rsshub.app/zh/routes/github)    | 仓库 Issues、PR、Release、Commits、Trending |
+| 💻 GitLab     | [文档 →](https://docs.rsshub.app/zh/routes/gitlab)    | 仓库活动                                    |
+| 💻 Docker Hub | [文档 →](https://docs.rsshub.app/zh/routes/dockerhub) | 镜像更新                                    |
+| 💻 npm        | [文档 →](https://docs.rsshub.app/zh/routes/npm)       | 包更新                                      |
+| 💻 掘金       | [文档 →](https://docs.rsshub.app/zh/routes/juejin)    | 文章                                        |
+| 💻 其他       | [文档 →](https://docs.rsshub.app/zh/routes/)          | Hacker News、InfoQ、Stack Overflow 等       |
 
 ### 游戏
 
-| 分类           | 官方文档                                                              | 支持站点（部分）        |
-| :------------- | :-------------------------------------------------------------------- | :---------------------- |
-| 🎮 王者荣耀    | [文档 →](https://docs.rsshub.app/zh/routes/game#wang-zhe-rong-yao)    | **赛程比分**、英雄强度  |
-| 🎮 英雄联盟    | [文档 →](https://docs.rsshub.app/zh/routes/game#ying-xiong-lian-meng) | **赛程比分**、新闻      |
-| 🎮 Steam       | [文档 →](https://docs.rsshub.app/zh/routes/game#steam)                | 游戏新闻、更新          |
-| 🎮 PlayStation | [文档 →](https://docs.rsshub.app/zh/routes/game#playstation)          | 商店                    |
-| 🎮 Nintendo    | [文档 →](https://docs.rsshub.app/zh/routes/game#nintendo)             | 商店                    |
-| 🎮 其他        | [文档 →](https://docs.rsshub.app/zh/routes/game)                      | TapTap、3DM、游民星空等 |
+| 分类           | 官方文档                                                | 支持站点（部分）        |
+| :------------- | :------------------------------------------------------ | :---------------------- |
+| 🎮 王者荣耀    | [文档 →](https://docs.rsshub.app/zh/routes/kingofglory) | **赛程比分**、英雄强度  |
+| 🎮 英雄联盟    | [文档 →](https://docs.rsshub.app/zh/routes/lol)         | **赛程比分**、新闻      |
+| 🎮 Steam       | [文档 →](https://docs.rsshub.app/zh/routes/steam)       | 游戏新闻、更新          |
+| 🎮 PlayStation | [文档 →](https://docs.rsshub.app/zh/routes/ps)          | 商店                    |
+| 🎮 Nintendo    | [文档 →](https://docs.rsshub.app/zh/routes/nintendo)    | 商店                    |
+| 🎮 其他        | [文档 →](https://docs.rsshub.app/zh/routes/)            | TapTap、3DM、游民星空等 |
 
 ### 其他分类
 
-| 分类        | 官方文档                                               | 说明                       |
-| :---------- | :----------------------------------------------------- | :------------------------- |
-| 🎓 大学通知 | [文档 →](https://docs.rsshub.app/zh/routes/university) | 国内外高校                 |
-| 📚 阅读     | [文档 →](https://docs.rsshub.app/zh/routes/reading)    | 起点、微信读书、豆瓣       |
-| 🎵 音视频   | [文档 →](https://docs.rsshub.app/zh/routes/multimedia) | 哔哩哔哩、YouTube、Spotify |
-| 🖼️ 图片     | [文档 →](https://docs.rsshub.app/zh/routes/picture)    | 壁纸、摄影                 |
-| 🛍️ 购物     | [文档 →](https://docs.rsshub.app/zh/routes/shopping)   | 什么值得买、京东           |
-| 🛫 出行     | [文档 →](https://docs.rsshub.app/zh/routes/travel)     | 12306、航班                |
-| 💰 金融     | [文档 →](https://docs.rsshub.app/zh/routes/finance)    | 股票、基金                 |
-| 🔬 科学期刊 | [文档 →](https://docs.rsshub.app/zh/routes/journal)    | 学术论文                   |
-| 📢 政务     | [文档 →](https://docs.rsshub.app/zh/routes/government) | 政府公告                   |
-| 🔍 其他     | [文档 →](https://docs.rsshub.app/zh/routes/other)      | 天气、热搜、排行榜         |
+| 分类        | 官方文档                                     | 说明                       |
+| :---------- | :------------------------------------------- | :------------------------- |
+| 🎓 大学通知 | [文档 →](https://docs.rsshub.app/zh/routes/) | 国内外高校                 |
+| 📚 阅读     | [文档 →](https://docs.rsshub.app/zh/routes/) | 起点、微信读书、豆瓣       |
+| 🎵 音视频   | [文档 →](https://docs.rsshub.app/zh/routes/) | 哔哩哔哩、YouTube、Spotify |
+| 🖼️ 图片     | [文档 →](https://docs.rsshub.app/zh/routes/) | 壁纸、摄影                 |
+| 🛍️ 购物     | [文档 →](https://docs.rsshub.app/zh/routes/) | 什么值得买、京东           |
+| 🛫 出行     | [文档 →](https://docs.rsshub.app/zh/routes/) | 12306、航班                |
+| 💰 金融     | [文档 →](https://docs.rsshub.app/zh/routes/) | 股票、基金                 |
+| 🔬 科学期刊 | [文档 →](https://docs.rsshub.app/zh/routes/) | 学术论文                   |
+| 📢 政务     | [文档 →](https://docs.rsshub.app/zh/routes/) | 政府公告                   |
+| 🔍 其他     | [文档 →](https://docs.rsshub.app/zh/routes/) | 天气、热搜、排行榜         |
 
 > 📌 **完整路由列表**请访问 [docs.rsshub.app/zh/routes](https://docs.rsshub.app/zh/routes)
 
