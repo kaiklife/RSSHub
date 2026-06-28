@@ -81,6 +81,109 @@ http://localhost:12005/codebuddy/workbuddy/changelog
 
 ---
 
+### 3. 虎扑赛程比分
+
+> 通过虎扑官方 `match-api.hupu.com` 接口，获取英雄联盟和王者荣耀的赛程与比分数据。每条 RSS 包含赛事名称、对阵双方、比分、状态（已结束/进行中/未开始）和虎扑直播间链接。
+
+**路由地址：**
+
+```
+/hupu/schedule/:game
+```
+
+**参数说明：**
+
+| 参数   | 说明                                           | 默认值 |
+| ------ | ---------------------------------------------- | ------ |
+| `game` | 游戏类型：`lol`（英雄联盟）、`kog`（王者荣耀） | `lol`  |
+
+**数据来源：**
+
+```
+GET https://match-api.hupu.com/1/8.2.10/matchallapi/bff/standard/getScheduleListByTagForH5
+    ?businessType=common
+    &businessId={lol|kog}
+    &datasource=navigation
+```
+
+**返回数据结构：**
+
+```json
+{
+    "result": {
+        "dayGameData": [
+            {
+                "dayTime": "2026-06-28",
+                "dateBlock": "今天 周日",
+                "matchData": [
+                    {
+                        "matchId": "1527692939886592",
+                        "matchStatus": "COMPLETED | LIVING | NOT_STARTED",
+                        "matchStatusDesc": "已结束 | 进行中 | 未开始",
+                        "matchStartTimeStamp": "1777968000000",
+                        "matchIntroduction": "KPL夏季赛",
+                        "matchName": "电竞常规赛 第三轮",
+                        "scoreCountText": "4.4万人评分",
+                        "againstInfo": {
+                            "memberInfos": [
+                                {
+                                    "memberName": "成都AG超玩会",
+                                    "memberLogo": "https://...png",
+                                    "memberBaseScore": "3"
+                                },
+                                {
+                                    "memberName": "重庆狼队",
+                                    "memberLogo": "https://...png",
+                                    "memberBaseScore": "1"
+                                }
+                            ],
+                            "winnerMemberId": "xxx"
+                        },
+                        "liveRoomLink": "huputiyu://general/live?..."
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+**完整示例：**
+
+```
+# 英雄联盟赛程（LPL / LCK / MSI / EWC 等）
+http://localhost:12005/hupu/schedule/lol
+
+# 王者荣耀赛程（KPL / 挑战者杯 等）
+http://localhost:12005/hupu/schedule/kog
+```
+
+**环境变量：**
+
+无（无需 Cookie / Token，虎扑公开接口）
+
+---
+
+## 📋 全部虎扑路由速查
+
+以下为 Fork 中所有虎扑（hupu）命名空间下的可用路由，涵盖新闻、论坛和赛程数据：
+
+| 路由                     | 说明                                   | 来源        |
+| ------------------------ | -------------------------------------- | ----------- |
+| `/hupu/nba`              | 🏀 NBA 新闻                            | 上游原生    |
+| `/hupu/cba`              | 🏀 CBA 新闻                            | 上游原生    |
+| `/hupu/soccer`           | ⚽ 足球新闻                            | 上游原生    |
+| `/hupu/news/:team`       | 🏀 特定球队新闻（如 `spurs` `lakers`） | 上游原生    |
+| `/hupu/all/:id?`         | 📢 热帖（默认步行街每日话题）          | 上游原生    |
+| `/hupu/bbs/:id?/:order?` | 💬 社区帖子（含战报数据）              | 上游原生    |
+| `/hupu/bxj/:id?/:order?` | 🚶 步行街帖子                          | 上游原生    |
+| **`/hupu/schedule/lol`** | 🎮 **英雄联盟赛程比分（新增）**        | **本 Fork** |
+| **`/hupu/schedule/kog`** | 🏆 **王者荣耀赛程比分（新增）**        | **本 Fork** |
+
+> 💡 所有虎捕路由均可通过 RSSHub 标准参数（`?limit=20`、`?format=json` 等）控制输出。
+
+---
+
 ## 🏗️ 部署
 
 ### Docker / Docker Compose
@@ -118,7 +221,7 @@ THREADS_COOKIE="sessionid=xxx; ds_user_id=xxx" npm run dev
 打 tag 推送即可触发 ACR 自动构建：
 
 ```bash
-git tag release-v0.1.2 -f
+git tag release-v0.1.3 -f
 git tag latest -f
 git push origin --tags -f
 ```
@@ -129,23 +232,19 @@ git push origin --tags -f
 
 ## 📋 版本记录
 
-### v0.1.2（当前）
+### v0.1.3（当前）
 
 **新增：**
 
-- `CodeBuddy WorkBuddy 更新日志` 路由：`/codebuddy/workbuddy/changelog`
-- 通过 `got` + `cheerio` 抓取 VitePress 预渲染页面
-- 支持 `?limit=N` 参数控制条目数
-- 支持 FreshRSS Radar 自动发现
+- 虎捕赛程比分路由：`/hupu/schedule/lol`（英雄联盟）和 `/hupu/schedule/kog`（王者荣耀）
+- 通过虎捕官方 `match-api.hupu.com` 接口获取全量赛程和实时比分
+- 每条 RSS 包含：赛事名称、对阵双方队名+Logo、比分、状态标签（✅已结束/🔴进行中/⏳未开始）、评分人数、直播间链接
 
 **文件：**
 
-- `lib/routes/codebuddy/` — 新增命名空间
-    - `namespace.ts` — 命名空间配置
-    - `index.ts` — 路由处理 + route 导出
-    - `README.md` — 路由文档
+- `lib/routes/hupu/schedule.ts` — 路由处理 + 数据格式化 + HTML 模板渲染
 
-### v0.1.1
+### v0.1.2
 
 **新增：**
 
